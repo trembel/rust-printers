@@ -173,5 +173,7 @@ pub fn print_file(printer_name: &str, file_path: &str, job_name: Option<&str>) -
  */
 pub fn free_dests(dests: &Vec<&CupsDestT>) {
     let ptr = dests.as_ptr();
-    unsafe { cupsFreeDests(1 as i32, *ptr) };
+    if dests.len() >= 1 {
+        unsafe { cupsFreeDests(1 as i32, *ptr) };
+    }
 }
